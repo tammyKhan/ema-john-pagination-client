@@ -9,7 +9,7 @@ const Shop = () => {
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);
     const { count } = useLoaderData();
-    const itemsPerPage = 10;
+    const [itemsPerPage, setItemsPerPage] = useState(10);
     const numberOfPages = Math.ceil(count/itemsPerPage);
  
    const pages = [...Array(numberOfPages).keys()];
@@ -71,6 +71,12 @@ const Shop = () => {
         deleteShoppingCart();
     }
 
+    const handleItemsPerPage = e => {
+        const val = parseInt(e.target.value);
+        console.log(val);
+        setItemsPerPage(val)
+    }
+
     return (
         <div className='shop-container'>
             <div className="products-container">
@@ -99,6 +105,12 @@ const Shop = () => {
                    </button>
                    )
                 }
+                <select value={itemsPerPage} onChange={handleItemsPerPage} name="" id="">
+                   <option value="5">5</option>
+                   <option value="10">10</option>
+                   <option value="20">20</option>
+                   <option value="50">50</option>
+                </select>
             </div>
         </div>
     );
